@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Leçon 1 — Notation Big O : complexité asymptotique, borne supérieure, et analyse d'algorithmes.">
+    <title>Leçon 1 — Notation Big O | Portfolio Algorithmique</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <a href="../index.html" class="logo">Algo &amp; Complexité</a>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../index.html#lecons">Leçons</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Lesson Content -->
+    <main class="lesson-page container">
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="../index.html">Accueil</a>
+            <span>/</span>
+            <span class="current">Leçon 1 — Notation Big O</span>
+        </div>
+
+        <!-- Header -->
+        <div class="lesson-header fade-in">
+            <h1>Leçon 1 — Notation Big O</h1>
+            <p class="subtitle">Évaluer la complexité d'un algorithme et comprendre la croissance asymptotique.</p>
+        </div>
+
+        <!-- 1. Journal d'apprentissage réflexif -->
+        <div class="content-block fade-in">
+            <h3><span class="icon">📝</span> Journal d'apprentissage réflexif</h3>
+            <p>
+                Cette semaine, j'ai étudié la <strong>notation Big O</strong> qui permet d'évaluer la complexité d'un
+                algorithme.
+                J'ai compris que l'objectif est de mesurer la croissance du temps d'exécution en fonction de la taille
+                des données.
+            </p>
+            <p>
+                Au début, j'avais du mal à analyser les boucles imbriquées, mais les exercices pratiques m'ont aidé à
+                mieux comprendre.
+                Je dois encore renforcer ma compréhension des preuves formelles.
+            </p>
+        </div>
+
+        <!-- 2. Synthèse des concepts clés -->
+        <div class="content-block fade-in">
+            <h3><span class="icon">💡</span> Synthèse personnelle des concepts clés</h3>
+            <p>
+                La notation Big O représente une <strong>borne supérieure asymptotique</strong>.
+                Elle permet d'ignorer les constantes et les termes dominés pour ne garder que le terme
+                qui influence le plus la croissance lorsque <em>n</em> devient très grand.
+            </p>
+            <div class="formula">
+                T(n) = 3n² + 5n + 10 → O(n²)
+            </div>
+            <p>
+                On se concentre sur le terme dominant : ici <strong>n²</strong>, car c'est celui qui croît le plus vite.
+            </p>
+        </div>
+
+        <!-- 3. Application pratique -->
+        <div class="content-block fade-in">
+            <h3><span class="icon">⚙️</span> Application pratique</h3>
+            <p>
+                Dans un projet de gestion de données, remplacer un algorithme <strong>O(n²)</strong>
+                par un algorithme <strong>O(n log n)</strong> permet d'améliorer fortement les performances
+                lorsque la taille des données augmente.
+            </p>
+            <ul>
+                <li>Tri par sélection : <strong>O(n²)</strong> — lent pour de grands ensembles</li>
+                <li>Tri fusion (Merge Sort) : <strong>O(n log n)</strong> — beaucoup plus efficace</li>
+                <li>Recherche binaire : <strong>O(log n)</strong> — idéal sur des données triées</li>
+            </ul>
+        </div>
+
+        <!-- 4. Auto-évaluation -->
+        <div class="content-block fade-in">
+            <h3><span class="icon">🎯</span> Auto-évaluation</h3>
+            <p><strong>Ce que je maîtrise :</strong></p>
+            <span class="tag-good">✓ Identification des complexités simples</span>
+            <span class="tag-good">✓ Analyse de boucles simples</span>
+
+            <p style="margin-top: 1rem;"><strong>Ce que je dois améliorer :</strong></p>
+            <span class="tag-improve">↗ Résolution des récurrences</span>
+            <span class="tag-improve">↗ Preuves formelles</span>
+
+            <p style="margin-top: 1rem;">
+                <strong>Stratégie :</strong> Pratiquer régulièrement et analyser des algorithmes variés pour renforcer
+                ma compréhension.
+            </p>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><a href="../index.html">← Retour à l'accueil</a></p>
+        <p>&copy; 2026 — Portfolio Algorithmique et Complexité</p>
+    </footer>
+
+</body>
+
+</html>
