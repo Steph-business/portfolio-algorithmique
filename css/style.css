@@ -578,6 +578,217 @@ body {
     }
 }
 
+/* ===== Academic Content ===== */
+
+/* Theorem / Definition / Proof boxes */
+.theorem-box,
+.definition-box,
+.proof-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 1.5rem 1.5rem 1.5rem 1.8rem;
+    margin: 1.2rem 0;
+    position: relative;
+    border-left: 4px solid var(--accent-primary);
+}
+
+.definition-box {
+    border-left-color: #2ed573;
+}
+
+.proof-box {
+    border-left-color: #ffa502;
+}
+
+.theorem-box .box-title,
+.definition-box .box-title,
+.proof-box .box-title {
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.theorem-box .box-title {
+    color: var(--accent-secondary);
+}
+
+.definition-box .box-title {
+    color: #2ed573;
+}
+
+.proof-box .box-title {
+    color: #ffa502;
+}
+
+/* Math formulas */
+.math {
+    display: block;
+    background: rgba(108, 99, 255, 0.06);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 14px 20px;
+    margin: 1rem 0;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent-secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.8;
+    overflow-x: auto;
+}
+
+.math-inline {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent-secondary);
+    font-weight: 500;
+    font-size: 0.9em;
+    background: rgba(108, 99, 255, 0.06);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Pseudo-code blocks */
+.pseudo-code {
+    background: rgba(15, 15, 26, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 1.2rem 1.5rem;
+    margin: 1rem 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: var(--text-primary);
+    overflow-x: auto;
+}
+
+.pseudo-code .keyword {
+    color: #6c63ff;
+    font-weight: 600;
+}
+
+.pseudo-code .comment {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.pseudo-code .var {
+    color: #2ed573;
+}
+
+/* Subsection headers inside content blocks */
+.subsection {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 1.5rem 0 0.8rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.subsection .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: rgba(108, 99, 255, 0.12);
+    color: var(--accent-primary);
+    font-size: 0.78rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 0 6px;
+}
+
+/* Proof steps with checkmarks */
+.proof-step {
+    margin: 0.8rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.proof-step::before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    color: #2ed573;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.proof-step strong {
+    color: var(--accent-secondary);
+}
+
+/* Complexity comparison table */
+.complexity-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+.complexity-table th {
+    background: rgba(108, 99, 255, 0.1);
+    color: var(--accent-secondary);
+    font-weight: 600;
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.complexity-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+.complexity-table tr:hover td {
+    background: rgba(108, 99, 255, 0.04);
+}
+
+/* CQFD badge */
+.cqfd {
+    display: inline-block;
+    background: rgba(46, 213, 115, 0.12);
+    border: 1px solid rgba(46, 213, 115, 0.25);
+    color: #2ed573;
+    padding: 4px 16px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 2px;
+    margin-top: 0.5rem;
+}
+
+/* Section number badge for content blocks */
+.section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(108, 99, 255, 0.08);
+    border: 1px solid var(--border-color);
+    padding: 4px 14px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent-secondary);
+    margin-bottom: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
     .navbar {

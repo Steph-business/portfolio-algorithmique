@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Leçon 1: Notation Big O : complexité asymptotique, borne supérieure, et analyse d'algorithmes.">
-    <title>Leçon 1: Notation Big O | Portfolio Algorithmique</title>
+        content="Leçon 1: Preuve et Complexité Algorithmique — Invariants de boucle, notation Big-O, classes P/NP. Cours ALC2101.">
+    <title>Leçon 1: Preuve et Complexité Algorithmique | Portfolio Algorithmique</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
@@ -31,77 +31,362 @@
         <div class="breadcrumb">
             <a href="../index.html">Accueil</a>
             <span>/</span>
-            <span class="current">Leçon 1: Notation Big O</span>
+            <span class="current">Leçon 1: Preuve et Complexité Algorithmique</span>
         </div>
 
         <!-- Header -->
         <div class="lesson-header fade-in">
-            <h1>Leçon 1: Notation Big O</h1>
-            <p class="subtitle">Évaluer la complexité d'un algorithme et comprendre la croissance asymptotique.</p>
+            <h1>📒 Leçon 1 — Preuve et Complexité Algorithmique</h1>
+            <p class="subtitle">Version avancée pour portfolio académique — Cours ALC2101</p>
         </div>
 
-        <!-- 1. Journal d'apprentissage réflexif -->
+        <!-- ============================================ -->
+        <!-- 1. JOURNAL D'APPRENTISSAGE RÉFLEXIF          -->
+        <!-- ============================================ -->
         <div class="content-block fade-in">
+            <span class="section-badge">Section 01</span>
             <h3><span class="icon">📝</span> Journal d'apprentissage réflexif</h3>
+
             <p>
-                Cette semaine, j'ai étudié la <strong>notation Big O</strong> qui permet d'évaluer la complexité d'un
-                algorithme.
-                J'ai compris que l'objectif est de mesurer la croissance du temps d'exécution en fonction de la taille
-                des données.
+                Cette première leçon m'a permis de comprendre que l'algorithmique n'est pas
+                seulement une discipline de programmation mais une <strong>science formelle</strong>.
+                J'ai pris conscience que tester un algorithme ne constitue pas une preuve de correction.
             </p>
             <p>
-                Au début, j'avais du mal à analyser les boucles imbriquées, mais les exercices pratiques m'ont aidé à
-                mieux comprendre.
-                Je dois encore renforcer ma compréhension des preuves formelles.
+                La distinction entre <strong>terminaison</strong> et <strong>correction partielle</strong>
+                m'a obligé à structurer ma pensée de manière mathématique.
+                La notion d'<strong>invariant de boucle</strong> représente pour moi un tournant :
+                elle formalise rigoureusement ce que l'on suppose intuitivement vrai dans une boucle.
+            </p>
+            <p>
+                La classification <strong>P/NP</strong> m'a également ouvert une perspective
+                théorique sur les limites fondamentales du calcul.
+                Mon principal défi reste l'automatisation de la construction d'invariants pertinents.
             </p>
         </div>
 
-        <!-- 2. Synthèse des concepts clés -->
+        <!-- ============================================ -->
+        <!-- 2. SYNTHÈSE CONCEPTUELLE APPROFONDIE         -->
+        <!-- ============================================ -->
         <div class="content-block fade-in">
-            <h3><span class="icon">💡</span> Synthèse personnelle des concepts clés</h3>
-            <p>
-                La notation Big O représente une <strong>borne supérieure asymptotique</strong>.
-                Elle permet d'ignorer les constantes et les termes dominés pour ne garder que le terme
-                qui influence le plus la croissance lorsque <em>n</em> devient très grand.
-            </p>
-            <div class="formula">
-                T(n) = 3n² + 5n + 10 → O(n²)
+            <span class="section-badge">Section 02</span>
+            <h3><span class="icon">💡</span> Synthèse conceptuelle approfondie</h3>
+
+            <!-- 2.1 Fondement de la preuve -->
+            <div class="subsection">
+                <span class="badge">2.1</span> Fondement de la preuve d'algorithme
             </div>
+
             <p>
-                On se concentre sur le terme dominant : ici <strong>n²</strong>, car c'est celui qui croît le plus vite.
+                La <strong>correction totale</strong> d'un algorithme A calculant une fonction f repose sur :
             </p>
+
+            <div class="theorem-box">
+                <div class="box-title">⚡ Théorème — Correction totale</div>
+                <div class="math">
+                    Correction totale = Terminaison + Correction partielle
+                </div>
+            </div>
+
+            <!-- Terminaison -->
+            <div class="subsection">
+                <span class="badge">▸</span> Terminaison
+            </div>
+
+            <p>
+                Un algorithme <strong>termine</strong> si aucune exécution n'est infinie.
+            </p>
+
+            <div class="definition-box">
+                <div class="box-title">📐 Définition — Variant</div>
+                <p>
+                    Pour les algorithmes itératifs, on identifie un <strong>variant V</strong> tel que :
+                </p>
+                <ul>
+                    <li><span class="math-inline">V ∈ ℕ</span></li>
+                    <li><span class="math-inline">V ≥ 0</span></li>
+                    <li>V <strong>décroît strictement</strong> à chaque itération</li>
+                </ul>
+                <p>
+                    Cela garantit qu'après un nombre fini d'itérations, V atteint 0.
+                </p>
+            </div>
+
+            <!-- Correction partielle -->
+            <div class="subsection">
+                <span class="badge">▸</span> Correction partielle
+            </div>
+
+            <p>On utilise un <strong>invariant de boucle I</strong>. Un invariant doit satisfaire :</p>
+
+            <div class="definition-box">
+                <div class="box-title">📐 Définition — Invariant de boucle</div>
+                <ul>
+                    <li><strong>Initialisation :</strong> I vrai avant la première itération</li>
+                    <li><strong>Conservation :</strong> I vrai avant itération i ⇒ I vrai après</li>
+                    <li><strong>Conclusion :</strong> I + condition de sortie ⇒ propriété finale</li>
+                </ul>
+                <p>Cela correspond à une preuve par récurrence :</p>
+                <div class="math">
+                    I(0) et I(k) ⇒ I(k + 1)
+                </div>
+            </div>
+
+            <!-- 2.2 Analyse mathématique d'un invariant -->
+            <div class="subsection">
+                <span class="badge">2.2</span> Analyse mathématique d'un invariant
+            </div>
+
+            <p>Prenons l'algorithme de <strong>somme</strong> :</p>
+
+            <div class="pseudo-code">
+                <span class="var">s</span> ← 0<br>
+                <span class="keyword">Pour</span> <span class="var">i</span> ← 1 <span class="keyword">à</span> n<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="var">s</span> ← <span class="var">s</span> + T[<span
+                    class="var">i</span>]
+            </div>
+
+            <p>Invariant proposé :</p>
+
+            <div class="math">
+                I(i) : s = Σ<sub>j=1</sub><sup>i−1</sup> T[j]
+            </div>
+
+            <div class="proof-box">
+                <div class="box-title">🔶 Preuve de l'invariant</div>
+
+                <div class="proof-step">
+                    <strong>Initialisation</strong> — Avant première itération :
+                    i = 1 → somme vide = 0 → invariant vrai.
+                </div>
+
+                <div class="proof-step">
+                    <strong>Conservation</strong> — Supposons invariant vrai pour i.
+                    Après exécution :
+                    <div class="math">
+                        s = Σ<sub>j=1</sub><sup>i</sup> T[j]
+                    </div>
+                    Invariant conservé.
+                </div>
+
+                <div class="proof-step">
+                    <strong>Conclusion</strong> — À la fin, i = n + 1. Donc :
+                    <div class="math">
+                        s = Σ<sub>j=1</sub><sup>n</sup> T[j]
+                    </div>
+                    <span class="cqfd">■ CQFD</span>
+                </div>
+            </div>
         </div>
 
-        <!-- 3. Application pratique -->
+        <!-- ============================================ -->
+        <!-- 3. ANALYSE APPROFONDIE DE COMPLEXITÉ         -->
+        <!-- ============================================ -->
         <div class="content-block fade-in">
-            <h3><span class="icon">⚙️</span> Application pratique</h3>
+            <span class="section-badge">Section 03</span>
+            <h3><span class="icon">⚙️</span> Analyse approfondie de complexité</h3>
+
+            <!-- 3.1 Définition formelle -->
+            <div class="subsection">
+                <span class="badge">3.1</span> Définition formelle du Big-O
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">⚡ Définition — Notation Big-O</div>
+                <p>On dit que :</p>
+                <div class="math">T(n) = O(f(n))</div>
+                <p>si :</p>
+                <div class="math">∃ c &gt; 0, ∃ n₀ ∈ ℕ, ∀ n ≥ n₀ : T(n) ≤ c · f(n)</div>
+                <p>Ce n'est <strong>pas une égalité</strong>, c'est une <strong>majoration asymptotique</strong>.</p>
+            </div>
+
+            <!-- 3.2 Étude détaillée PrefMoyen -->
+            <div class="subsection">
+                <span class="badge">3.2</span> Étude détaillée de l'algorithme PrefMoyen
+            </div>
+
+            <div class="pseudo-code">
+                <span class="keyword">Pour</span> <span class="var">i</span> ← 1 <span class="keyword">à</span> n<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">Pour</span> <span class="var">j</span> ← 1 <span
+                    class="keyword">à</span> <span class="var">i</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="var">a</span> ← <span class="var">a</span>
+                + tab[<span class="var">j</span>]
+            </div>
+
+            <p>Nombre total d'itérations :</p>
+
+            <div class="math">
+                Σ<sub>i=1</sub><sup>n</sup> i = n(n + 1) / 2 = n² / 2 + n / 2
+            </div>
+
+            <p>Donc :</p>
+
+            <div class="math">T(n) = O(n²)</div>
+
+            <!-- 3.3 Comparaison asymptotique -->
+            <div class="subsection">
+                <span class="badge">3.3</span> Comparaison asymptotique des classes
+            </div>
+
+            <p>Pour <em>n</em> très grand :</p>
+
+            <div class="math">
+                O(1) &lt; O(log n) &lt; O(n) &lt; O(n log n) &lt; O(n²) &lt; O(2ⁿ)
+            </div>
+
+            <table class="complexity-table">
+                <thead>
+                    <tr>
+                        <th>Classe</th>
+                        <th>Nom</th>
+                        <th>n = 10</th>
+                        <th>n = 100</th>
+                        <th>n = 1000</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="math-inline">O(1)</span></td>
+                        <td>Constante</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td><span class="math-inline">O(log n)</span></td>
+                        <td>Logarithmique</td>
+                        <td>≈ 3</td>
+                        <td>≈ 7</td>
+                        <td>≈ 10</td>
+                    </tr>
+                    <tr>
+                        <td><span class="math-inline">O(n)</span></td>
+                        <td>Linéaire</td>
+                        <td>10</td>
+                        <td>100</td>
+                        <td>1 000</td>
+                    </tr>
+                    <tr>
+                        <td><span class="math-inline">O(n log n)</span></td>
+                        <td>Quasi-linéaire</td>
+                        <td>≈ 33</td>
+                        <td>≈ 664</td>
+                        <td>≈ 9 966</td>
+                    </tr>
+                    <tr>
+                        <td><span class="math-inline">O(n²)</span></td>
+                        <td>Quadratique</td>
+                        <td>100</td>
+                        <td>10 000</td>
+                        <td>1 000 000</td>
+                    </tr>
+                    <tr>
+                        <td><span class="math-inline">O(2ⁿ)</span></td>
+                        <td>Exponentielle</td>
+                        <td>1 024</td>
+                        <td>≈ 10³⁰</td>
+                        <td>∞ 🚫</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Un algorithme <strong>exponentiel</strong> devient inutilisable très rapidement.</p>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 4. PERSPECTIVE THÉORIQUE: CLASSES P/NP       -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 04</span>
+            <h3><span class="icon">🧠</span> Perspective théorique : Classes de problèmes</h3>
+
+            <div class="definition-box">
+                <div class="box-title">📐 Classe P</div>
+                <p>
+                    Problèmes résolus en <strong>temps polynomial</strong> :
+                    <span class="math-inline">O(n<sup>k</sup>)</span>
+                </p>
+                <p>Exemple : tri par insertion.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">📐 Classe NP</div>
+                <p>
+                    Problèmes dont une <strong>solution candidate</strong> peut être
+                    <strong>vérifiée</strong> en temps polynomial.
+                </p>
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">⚡ NP-Complet</div>
+                <p>Problèmes à la fois :</p>
+                <ul>
+                    <li><strong>NP</strong></li>
+                    <li><strong>NP-difficiles</strong></li>
+                </ul>
+                <p>Si un seul NP-complet est résolu en temps polynomial :</p>
+                <div class="math">P = NP</div>
+                <p>Ce qui reste aujourd'hui un <strong>problème ouvert fondamental</strong> en informatique théorique.
+                </p>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 5. APPLICATION AVANCÉE                       -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 05</span>
+            <h3><span class="icon">🔗</span> Application avancée (niveau professionnel)</h3>
+
             <p>
-                Dans un projet de gestion de données, remplacer un algorithme <strong>O(n²)</strong>
-                par un algorithme <strong>O(n log n)</strong> permet d'améliorer fortement les performances
-                lorsque la taille des données augmente.
+                Dans les <strong>smart contracts</strong> (blockchain) :
             </p>
             <ul>
-                <li>Tri par sélection : <strong>O(n²)</strong> — lent pour de grands ensembles</li>
-                <li>Tri fusion (Merge Sort) : <strong>O(n log n)</strong> — beaucoup plus efficace</li>
-                <li>Recherche binaire : <strong>O(log n)</strong> — idéal sur des données triées</li>
+                <li>Chaque opération = <strong>coût en gas</strong></li>
+                <li>Complexité quadratique = <strong>explosion des coûts</strong></li>
             </ul>
+
+            <p>Un double parcours de tableau en Solidity :</p>
+
+            <div class="math">O(n²) → Contrat potentiellement inutilisable</div>
+
+            <div class="proof-box">
+                <div class="box-title">🔶 Stratégies d'optimisation</div>
+                <ul>
+                    <li><strong>Mapping</strong> → accès en <span class="math-inline">O(1)</span></li>
+                    <li><strong>Éviter les boucles imbriquées</strong> sur les données on-chain</li>
+                    <li><strong>Pré-calculs</strong> off-chain quand c'est possible</li>
+                </ul>
+            </div>
+
+            <p>
+                La complexité algorithmique devient ici une <strong>contrainte économique réelle</strong> :
+                chaque opération superflue coûte de l'argent.
+            </p>
         </div>
 
-        <!-- 4. Auto-évaluation -->
+        <!-- ============================================ -->
+        <!-- 6. AUTO-ÉVALUATION CRITIQUE                  -->
+        <!-- ============================================ -->
         <div class="content-block fade-in">
-            <h3><span class="icon">🎯</span> Auto-évaluation</h3>
-            <p><strong>Ce que je maîtrise :</strong></p>
-            <span class="tag-good">✓ Identification des complexités simples</span>
+            <span class="section-badge">Section 06</span>
+            <h3><span class="icon">🎯</span> Auto-évaluation critique</h3>
+
+            <p><strong>Forces :</strong></p>
+            <span class="tag-good">✓ Complexité asymptotique</span>
             <span class="tag-good">✓ Analyse de boucles simples</span>
+            <span class="tag-good">✓ Preuve d'invariant sur algorithmes itératifs</span>
 
-            <p style="margin-top: 1rem;"><strong>Ce que je dois améliorer :</strong></p>
-            <span class="tag-improve">↗ Résolution des récurrences</span>
-            <span class="tag-improve">↗ Preuves formelles</span>
+            <p style="margin-top: 1rem;"><strong>Points à améliorer :</strong></p>
+            <span class="tag-improve">↗ Résolution d'équations de récurrence</span>
+            <span class="tag-improve">↗ Construction systématique d'invariants complexes</span>
 
-            <p style="margin-top: 1rem;">
-                <strong>Stratégie :</strong> Pratiquer régulièrement et analyser des algorithmes variés pour renforcer
-                ma compréhension.
-            </p>
+            <p style="margin-top: 1.2rem;"><strong>Plan d'amélioration :</strong></p>
+            <ul>
+                <li>Résoudre <strong>10 exercices</strong> de preuve formelle</li>
+                <li>Implémenter puis analyser <strong>3 algorithmes récursifs</strong></li>
+                <li>Étudier le théorème maître pour les récurrences de type diviser-pour-régner</li>
+            </ul>
         </div>
 
     </main>
