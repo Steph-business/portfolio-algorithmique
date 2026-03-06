@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Leçon 7 : Techniques de conception d'algorithmes : diviser pour régner, programmation dynamique, backtracking.">
+    <title>Leçon 7 : Techniques de conception d'algorithmes | Portfolio Algorithmique</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <a href="../index.html" class="logo">Algo &amp; Complexité</a>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../index.html#lecons">Leçons</a></li>
+                <li><a href="../index.html#bilans">Bilans</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="lesson-page container">
+
+        <div class="breadcrumb">
+            <a href="../index.html">Accueil</a>
+            <span>/</span>
+            <span class="current">Leçon 7 : Techniques de conception d'algorithmes</span>
+        </div>
+
+        <div class="lesson-header fade-in">
+            <h1>Leçon 7 : Techniques de conception d'algorithmes</h1>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 1. JOURNAL D'APPRENTISSAGE RÉFLEXIF          -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 01</span>
+            <h3>Journal d'apprentissage réflexif</h3>
+
+            <p>
+                Cette leçon m'a permis de découvrir les principales <strong>techniques de conception
+                    d'algorithmes</strong>. J'ai compris que l'approche <strong>force brute</strong>
+                (tester toutes les possibilités) devient très inefficace pour de grandes données.
+            </p>
+            <p>
+                J'ai étudié trois techniques majeures : <strong>diviser pour régner</strong>,
+                <strong>programmation dynamique</strong> et <strong>backtracking</strong>.
+                La programmation dynamique m'a particulièrement intéressé car elle optimise
+                les algorithmes en <strong>mémorisant les résultats</strong> déjà calculés.
+                Mon défi reste de savoir choisir la bonne technique selon le problème posé.
+            </p>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 2. SYNTHÈSE DES CONCEPTS CLÉS                -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 02</span>
+            <h3>Synthèse des concepts clés</h3>
+
+            <!-- 2.1 Diviser pour régner -->
+            <div class="subsection">
+                <span class="badge">2.1</span> Diviser pour régner
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Principe : Diviser pour régner</div>
+                <p>Cette technique consiste à :</p>
+                <ul>
+                    <li><strong>Diviser</strong> le problème en sous-problèmes plus petits</li>
+                    <li><strong>Résoudre</strong> chaque sous-problème (souvent récursivement)</li>
+                    <li><strong>Combiner</strong> les solutions pour obtenir la solution finale</li>
+                </ul>
+            </div>
+
+            <p>Schéma général :</p>
+            <div class="pseudo-code">
+                <span class="keyword">Si</span> le problème est petit<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;résoudre directement<br>
+                <span class="keyword">Sinon</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;diviser le problème en sous-problèmes<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;résoudre chaque sous-problème<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;combiner les résultats
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">Analyse de la complexité</div>
+                <p>Le temps d'exécution suit souvent la récurrence :</p>
+                <div class="math">T(n) = a·T(n/b) + f(n)</div>
+                <p>où : a = nombre de sous-problèmes, b = facteur de réduction, f(n) = coût de division + combinaison.
+                </p>
+                <p>On résout avec la <strong>méthode de substitution</strong> ou le <strong>théorème maître</strong>.
+                </p>
+            </div>
+
+            <p><strong>Exemple : Maximum d'un tableau</strong></p>
+            <ul>
+                <li>Diviser le tableau en deux parties</li>
+                <li>Trouver le maximum de chaque partie</li>
+                <li>Comparer les deux maxima</li>
+            </ul>
+            <div class="math">T(n) = 2T(n/2) + c → T(n) = O(n)</div>
+
+            <p><strong>Avantages :</strong> parallélisme, bonne performance cache, simplifie les problèmes complexes
+                (tri rapide, tri fusion).</p>
+            <p><strong>Inconvénients :</strong> récursivité peut être lente, certains sous-problèmes recalculés
+                plusieurs fois.</p>
+
+            <!-- 2.2 Programmation dynamique -->
+            <div class="subsection">
+                <span class="badge">2.2</span> Programmation dynamique
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Définition : Programmation dynamique</div>
+                <p>
+                    Technique qui résout un problème en le divisant en sous-problèmes et en
+                    <strong>mémorisant les résultats</strong> pour éviter les recalculs.
+                    Utilisée pour les problèmes d'<strong>optimisation</strong>.
+                </p>
+            </div>
+
+            <p><strong>Propriétés nécessaires :</strong></p>
+
+            <div class="theorem-box">
+                <div class="box-title">1. Chevauchement de sous-problèmes</div>
+                <p>Les mêmes sous-problèmes sont calculés plusieurs fois.</p>
+                <p>Exemple : suite de Fibonacci</p>
+                <div class="math">F(n) = F(n−1) + F(n−2)</div>
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">2. Sous-structure optimale</div>
+                <p>La solution optimale est obtenue à partir des solutions optimales des sous-problèmes.</p>
+            </div>
+
+            <p><strong>Deux méthodes :</strong></p>
+            <div class="definition-box">
+                <div class="box-title">Mémoïsation (Top-Down)</div>
+                <p>Approche <strong>récursive</strong> : on stocke les résultats déjà calculés.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Tabulation (Bottom-Up)</div>
+                <p>On construit un <strong>tableau de solutions</strong>, du plus petit au plus grand problème.</p>
+            </div>
+
+            <p><strong>Étapes pour concevoir un algorithme dynamique :</strong></p>
+            <ul>
+                <li>Identifier la structure d'une solution optimale</li>
+                <li>Définir une relation de récurrence</li>
+                <li>Calculer les solutions des sous-problèmes</li>
+                <li>Construire la solution finale</li>
+            </ul>
+
+            <!-- 2.3 Backtracking -->
+            <div class="subsection">
+                <span class="badge">2.3</span> Backtracking
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Définition : Backtracking</div>
+                <p>
+                    Technique qui consiste à <strong>tester des solutions</strong> et
+                    <strong>revenir en arrière</strong> si elles sont mauvaises.
+                </p>
+            </div>
+
+            <p><strong>Principe :</strong></p>
+            <ul>
+                <li>Construire une solution partielle</li>
+                <li>Vérifier si elle est valide</li>
+                <li>Sinon revenir en arrière (backtrack) et essayer une autre possibilité</li>
+            </ul>
+
+            <p>Il faut :</p>
+            <ul>
+                <li>Une fonction qui <strong>vérifie</strong> la solution partielle</li>
+                <li>Une fonction qui <strong>étend</strong> la solution vers d'autres possibilités</li>
+            </ul>
+
+            <!-- 2.4 Comparaison -->
+            <div class="subsection">
+                <span class="badge">2.4</span> Comparaison des techniques
+            </div>
+
+            <table class="complexity-table">
+                <thead>
+                    <tr>
+                        <th>Technique</th>
+                        <th>Principe</th>
+                        <th>Sous-structure optimale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Diviser pour régner</td>
+                        <td>Diviser, résoudre, combiner</td>
+                        <td>Oui</td>
+                    </tr>
+                    <tr>
+                        <td>Prog. dynamique</td>
+                        <td>Mémorisation des résultats</td>
+                        <td>Oui</td>
+                    </tr>
+                    <tr>
+                        <td>Backtracking</td>
+                        <td>Essai-erreur avec retour</td>
+                        <td>Non</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 3. APPLICATION PRATIQUE                      -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 03</span>
+            <h3>Application pratique dans mon contexte</h3>
+
+            <p>Ces techniques sont utilisées dans de nombreux domaines :</p>
+            <ul>
+                <li>
+                    <strong>Diviser pour régner</strong> : tri fusion et tri rapide dans les
+                    bibliothèques standard de tous les langages de programmation.
+                </li>
+                <li>
+                    <strong>Programmation dynamique</strong> : algorithmes de plus court chemin,
+                    sac à dos, alignement de séquences ADN en bioinformatique.
+                </li>
+                <li>
+                    <strong>Backtracking</strong> : résolution de Sudoku, problème des N-reines,
+                    parcours de labyrinthes, génération de permutations.
+                </li>
+            </ul>
+            <p>
+                Le choix de la bonne technique dépend du type de problème. La force brute
+                est généralement évitée car elle est très coûteuse en temps de calcul.
+            </p>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 4. AUTO-ÉVALUATION                           -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 04</span>
+            <h3>Auto-évaluation et méta-cognition</h3>
+
+            <p><strong>Ce que je maîtrise bien :</strong></p>
+            <span class="tag-good">✓ Principe de diviser pour régner</span>
+            <span class="tag-good">✓ Concept de mémoïsation vs tabulation</span>
+            <span class="tag-good">✓ Principe du backtracking</span>
+
+            <p style="margin-top: 1rem;"><strong>Ce que je dois améliorer :</strong></p>
+            <span class="tag-improve">↗ Choisir la bonne technique selon le problème</span>
+            <span class="tag-improve">↗ Résolution de récurrences avec le théorème maître</span>
+
+            <p style="margin-top: 1.2rem;"><strong>Stratégie pour progresser :</strong></p>
+            <ul>
+                <li>Résoudre des exercices de programmation dynamique (Fibonacci, sac à dos)</li>
+                <li>Implémenter un algorithme de backtracking (N-reines, Sudoku)</li>
+                <li>Pratiquer la résolution de récurrences avec le théorème maître</li>
+            </ul>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p><a href="../index.html">← Retour à l'accueil</a></p>
+        <p>&copy; 2026 : Portfolio Algorithmique et Complexité</p>
+    </footer>
+</body>
+
+</html>
