@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Leçon 3 : Structures algorithmiques fondamentales : séquentielle, conditionnelle, répétitive.">
+    <title>Leçon 3 : Structures algorithmiques fondamentales | Portfolio Algorithmique</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <a href="../index.html" class="logo">Algo &amp; Complexité</a>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../index.html#lecons">Leçons</a></li>
+                <li><a href="../bilan.html">Bilan</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Lesson Content -->
+    <main class="lesson-page container">
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="../index.html">Accueil</a>
+            <span>/</span>
+            <span class="current">Leçon 3 : Structures algorithmiques fondamentales</span>
+        </div>
+
+        <!-- Header -->
+        <div class="lesson-header fade-in">
+            <h1>Leçon 3 : Structures algorithmiques fondamentales</h1>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 1. JOURNAL D'APPRENTISSAGE RÉFLEXIF          -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 01</span>
+            <h3>Journal d'apprentissage réflexif</h3>
+
+            <p>
+                Cette semaine, j'ai étudié les <strong>structures algorithmiques fondamentales</strong>
+                utilisées dans la construction des algorithmes. J'ai appris qu'un algorithme est
+                généralement composé de structures <strong>séquentielles</strong>,
+                <strong>conditionnelles</strong> et <strong>répétitives</strong>.
+            </p>
+            <p>
+                J'ai compris que ces structures permettent d'organiser la logique d'un programme
+                et de contrôler le flux d'exécution des instructions. Au début, j'avais des difficultés
+                à distinguer les différents types de boucles et à comprendre dans quels cas utiliser
+                chacune d'elles. Cependant, les exemples et les exercices m'ont aidé à mieux saisir
+                leur fonctionnement.
+            </p>
+            <p>
+                Je me sens plus à l'aise pour lire et comprendre un algorithme simple.
+                Mon défi reste d'<strong>optimiser l'utilisation des boucles</strong> pour
+                améliorer l'efficacité des algorithmes.
+            </p>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 2. SYNTHÈSE DES CONCEPTS CLÉS                -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 02</span>
+            <h3>Synthèse des concepts clés</h3>
+
+            <p>
+                Les structures algorithmiques sont les éléments fondamentaux qui permettent de
+                construire un algorithme. Elles définissent l'ordre et les conditions d'exécution
+                des instructions. On distingue principalement <strong>trois types</strong>.
+            </p>
+
+            <!-- Structure séquentielle -->
+            <div class="subsection">
+                <span class="badge">2.1</span> Structure séquentielle
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Définition : Structure séquentielle</div>
+                <p>
+                    Exécution des instructions <strong>dans l'ordre</strong> où elles apparaissent.
+                    Chaque instruction est exécutée une seule fois.
+                </p>
+            </div>
+
+            <div class="pseudo-code">
+                Lire <span class="var">A</span><br>
+                Lire <span class="var">B</span><br>
+                <span class="var">S</span> = <span class="var">A</span> + <span class="var">B</span><br>
+                Afficher <span class="var">S</span>
+            </div>
+
+            <p>Les instructions sont exécutées successivement sans interruption.</p>
+
+            <!-- Structure conditionnelle -->
+            <div class="subsection">
+                <span class="badge">2.2</span> Structure conditionnelle
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Définition : Structure conditionnelle</div>
+                <p>
+                    Permet de <strong>prendre une décision</strong> en fonction d'une condition logique.
+                    Elle permet de choisir entre plusieurs actions possibles.
+                </p>
+            </div>
+
+            <div class="pseudo-code">
+                <span class="keyword">SI</span> <span class="var">x</span> &gt; 0 <span class="keyword">ALORS</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Afficher "positif"<br>
+                <span class="keyword">SINON</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Afficher "négatif"
+            </div>
+
+            <!-- Structure répétitive -->
+            <div class="subsection">
+                <span class="badge">2.3</span> Structure répétitive (boucles)
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Définition : Structure répétitive</div>
+                <p>
+                    Permet de <strong>répéter plusieurs fois</strong> un ensemble d'instructions.
+                    Les deux types de boucles les plus courants sont la boucle <strong>POUR</strong>
+                    et la boucle <strong>TANT QUE</strong>.
+                </p>
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">Boucle POUR</div>
+                <p>Utilisée lorsque le <strong>nombre d'itérations est connu</strong>.</p>
+                <div class="pseudo-code">
+                    <span class="keyword">POUR</span> <span class="var">i</span> allant de 1 <span
+                        class="keyword">à</span> n<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Afficher <span class="var">i</span>
+                </div>
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">Boucle TANT QUE</div>
+                <p>Utilisée lorsque le nombre de répétitions <strong>dépend d'une condition</strong>.</p>
+                <div class="pseudo-code">
+                    <span class="var">i</span> = 1<br>
+                    <span class="keyword">TANT QUE</span> <span class="var">i</span> ≤ 10<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Afficher <span class="var">i</span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="var">i</span> = <span class="var">i</span> + 1
+                </div>
+            </div>
+
+            <p>
+                Ces structures sont essentielles car elles permettent de construire des algorithmes
+                capables de résoudre des <strong>problèmes complexes</strong>.
+            </p>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 3. APPLICATION PRATIQUE                      -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 03</span>
+            <h3>Application pratique dans mon contexte</h3>
+
+            <p>
+                Dans mon domaine d'étude en informatique et développement logiciel,
+                les structures algorithmiques sont utilisées constamment :
+            </p>
+            <ul>
+                <li>
+                    Une <strong>boucle</strong> permet de parcourir une liste d'étudiants
+                    et d'afficher les informations de chacun.
+                </li>
+                <li>
+                    Une <strong>structure conditionnelle</strong> peut vérifier si un étudiant
+                    a validé une matière ou non.
+                </li>
+                <li>
+                    Les boucles permettent d'<strong>automatiser des tâches répétitives</strong>
+                    comme le traitement de plusieurs données dans une base de données.
+                </li>
+            </ul>
+            <p>
+                Comprendre ces structures me permet d'écrire des programmes plus <strong>organisés</strong>,
+                plus <strong>efficaces</strong> et plus <strong>faciles à maintenir</strong>.
+            </p>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 4. AUTO-ÉVALUATION                           -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 04</span>
+            <h3>Auto-évaluation et méta-cognition</h3>
+
+            <p><strong>Ce que je maîtrise bien :</strong></p>
+            <span class="tag-good">✓ Structure séquentielle</span>
+            <span class="tag-good">✓ Utilisation des conditions dans un algorithme</span>
+            <span class="tag-good">✓ Lecture et compréhension d'algorithmes simples avec boucles</span>
+
+            <p style="margin-top: 1rem;"><strong>Ce que je dois améliorer :</strong></p>
+            <span class="tag-improve">↗ Choix de la structure la plus adaptée au problème</span>
+            <span class="tag-improve">↗ Analyse de l'efficacité des boucles utilisées</span>
+
+            <p style="margin-top: 1.2rem;"><strong>Stratégie pour progresser :</strong></p>
+            <ul>
+                <li>Pratiquer davantage d'exercices d'algorithmique</li>
+                <li>Analyser différents exemples d'algorithmes</li>
+                <li>Implémenter les algorithmes dans un langage de programmation
+                    pour mieux comprendre leur fonctionnement</li>
+            </ul>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><a href="../index.html">← Retour à l'accueil</a></p>
+        <p>&copy; 2026 : Portfolio Algorithmique et Complexité</p>
+    </footer>
+
+</body>
+
+</html>
