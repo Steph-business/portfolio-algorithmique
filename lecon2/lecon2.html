@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Leçon 2 : Analyse Asymptotique des Algorithmes : notations Big-O, Oméga, Theta, algorithmes de tri.">
+    <title>Leçon 2 : Analyse Asymptotique des Algorithmes | Portfolio Algorithmique</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <a href="../index.html" class="logo">Algo &amp; Complexité</a>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../index.html#lecons">Leçons</a></li>
+                <li><a href="../bilan.html">Bilan</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Lesson Content -->
+    <main class="lesson-page container">
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="../index.html">Accueil</a>
+            <span>/</span>
+            <span class="current">Leçon 2 : Analyse Asymptotique des Algorithmes</span>
+        </div>
+
+        <!-- Header -->
+        <div class="lesson-header fade-in">
+            <h1>Leçon 2 : Analyse Asymptotique des Algorithmes</h1>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 1. JOURNAL D'APPRENTISSAGE RÉFLEXIF          -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 01</span>
+            <h3>Journal d'apprentissage réflexif</h3>
+
+            <p>
+                Dans cette leçon, j'ai approfondi la manière d'analyser l'efficacité des algorithmes
+                à l'aide des <strong>notations asymptotiques</strong>. J'ai compris que l'objectif n'est
+                pas de mesurer un temps exact d'exécution, mais d'étudier la <strong>croissance du temps
+                    d'exécution</strong> lorsque la taille des données augmente.
+            </p>
+            <p>
+                La notation Big-O m'a permis de formaliser cette idée en ne conservant que le
+                <strong>terme dominant</strong> d'une fonction de coût. Au début, il n'était pas évident
+                pour moi de comprendre pourquoi on ignore les constantes et les termes de plus faible ordre.
+                Cependant, les exemples comparant différentes fonctions de complexité m'ont aidé à comprendre
+                que, pour de grandes valeurs de n, ces éléments deviennent négligeables.
+            </p>
+            <p>
+                Mon principal défi reste l'<strong>identification rapide du terme dominant</strong>
+                dans certaines expressions complexes.
+            </p>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 2. SYNTHÈSE DES CONCEPTS CLÉS                -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 02</span>
+            <h3>Synthèse des concepts clés</h3>
+
+            <!-- 2.1 Objectif -->
+            <div class="subsection">
+                <span class="badge">2.1</span> Objectif de l'analyse asymptotique
+            </div>
+
+            <p>
+                L'analyse asymptotique permet d'étudier le comportement d'un algorithme lorsque
+                la taille de l'entrée devient très grande. On ne cherche pas un temps exact mais
+                une <strong>tendance de croissance</strong>. On modélise le temps d'exécution par :
+            </p>
+
+            <div class="math">T(n)</div>
+
+            <p>où <em>n</em> représente la taille de l'entrée.</p>
+
+            <!-- 2.2 Big-O -->
+            <div class="subsection">
+                <span class="badge">2.2</span> Notation Big-O
+            </div>
+
+            <p>La notation Big-O donne une <strong>borne supérieure asymptotique</strong> du temps d'exécution.</p>
+
+            <div class="theorem-box">
+                <div class="box-title">Définition : Notation Big-O</div>
+                <p>On dit que :</p>
+                <div class="math">T(n) = O(f(n))</div>
+                <p>si :</p>
+                <div class="math">∃ c &gt; 0, ∃ n₀, ∀ n ≥ n₀ : T(n) ≤ c · f(n)</div>
+                <p>Cela signifie que la fonction f(n) <strong>majorera</strong> la croissance de T(n).</p>
+            </div>
+
+            <div class="proof-box">
+                <div class="box-title">Exemple</div>
+                <div class="math">T(n) = 4n² + 3n + 10</div>
+                <div class="proof-step">
+                    Pour les grandes valeurs de n, le terme dominant est n².
+                </div>
+                <div class="proof-step">
+                    Donc : <span class="math-inline">T(n) = O(n²)</span>
+                </div>
+            </div>
+
+            <!-- 2.3 Règles -->
+            <div class="subsection">
+                <span class="badge">2.3</span> Règles simplifiées d'analyse
+            </div>
+
+            <p>Lorsqu'on analyse une fonction :</p>
+            <ul>
+                <li>On garde le <strong>terme dominant</strong></li>
+                <li>On ignore les <strong>constantes</strong></li>
+                <li>On ignore les <strong>termes de plus faible ordre</strong></li>
+            </ul>
+
+            <div class="proof-box">
+                <div class="box-title">Exemple</div>
+                <div class="math">T(n) = 5n³ + 2n² + 7n + 4</div>
+                <div class="proof-step">
+                    Résultat : <span class="math-inline">T(n) = O(n³)</span>
+                </div>
+            </div>
+
+            <!-- 2.4 Autres notations -->
+            <div class="subsection">
+                <span class="badge">2.4</span> Autres notations asymptotiques
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Notation Ω (Oméga) : Borne inférieure</div>
+                <div class="math">T(n) = Ω(f(n))</div>
+                <p>Signifie que l'algorithme prend <strong>au moins</strong> ce temps.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Notation Θ (Theta) : Borne exacte</div>
+                <div class="math">T(n) = Θ(f(n))</div>
+                <p>Signifie que la fonction est <strong>encadrée</strong> :</p>
+                <div class="math">c₁ · f(n) ≤ T(n) ≤ c₂ · f(n)</div>
+            </div>
+
+            <!-- 2.5 Classes -->
+            <div class="subsection">
+                <span class="badge">2.5</span> Classes classiques de complexité
+            </div>
+
+            <table class="complexity-table">
+                <thead>
+                    <tr>
+                        <th>Complexité</th>
+                        <th>Interprétation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="math-inline">O(1)</span></td>
+                        <td>Temps constant</td>
+                    </tr>
+                    <tr>
+                        <td><span class="math-inline">O(log n)</span></td>
+                        <td>Logarithmique</td>
+                    </tr>
+                    <tr>
+                        <td><span class="math-inline">O(n)</span></td>
+                        <td>Linéaire</td>
+                    </tr>
+                    <tr>
+                        <td><span class="math-inline">O(n log n)</span></td>
+                        <td>Quasi-linéaire</td>
+                    </tr>
+                    <tr>
+                        <td><span class="math-inline">O(n²)</span></td>
+                        <td>Quadratique</td>
+                    </tr>
+                    <tr>
+                        <td><span class="math-inline">O(2ⁿ)</span></td>
+                        <td>Exponentielle</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 3. ANALYSE D'ALGORITHMES TYPES               -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 03</span>
+            <h3>Analyse d'algorithmes types</h3>
+
+            <!-- Boucle double indépendante -->
+            <div class="subsection">
+                <span class="badge">3.1</span> Boucle double indépendante
+            </div>
+
+            <div class="pseudo-code">
+                <span class="keyword">Pour</span> <span class="var">i</span> = 1 <span class="keyword">à</span> n<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">Pour</span> <span class="var">j</span> = 1 <span
+                    class="keyword">à</span> n<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;opération constante
+            </div>
+
+            <p>Nombre d'opérations :</p>
+            <div class="math">n × n = n²</div>
+            <p>Donc : <span class="math-inline">T(n) = O(n²)</span></p>
+
+            <!-- Boucle double dépendante -->
+            <div class="subsection">
+                <span class="badge">3.2</span> Boucle imbriquée dépendante
+            </div>
+
+            <div class="pseudo-code">
+                <span class="keyword">Pour</span> <span class="var">i</span> = 1 <span class="keyword">à</span> n<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">Pour</span> <span class="var">j</span> = 1 <span
+                    class="keyword">à</span> <span class="var">i</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;opération constante
+            </div>
+
+            <p>Nombre total d'opérations :</p>
+            <div class="math">1 + 2 + 3 + ... + n = n(n + 1) / 2</div>
+            <p>Donc : <span class="math-inline">T(n) = O(n²)</span></p>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 4. ALGORITHMES DE TRI                        -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 04</span>
+            <h3>Algorithmes de tri</h3>
+
+            <!-- Propriétés -->
+            <div class="subsection">
+                <span class="badge">4.1</span> Propriétés des algorithmes de tri
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">In-place</div>
+                <p>
+                    Un algorithme est <strong>in-place</strong> s'il utilise très peu de mémoire
+                    supplémentaire et modifie directement le tableau original.
+                </p>
+                <p>Exemples : tri par insertion, tri par sélection, tri à bulles.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Stabilité</div>
+                <p>
+                    Un algorithme de tri est <strong>stable</strong> si les éléments égaux
+                    conservent leur ordre initial après le tri.
+                </p>
+            </div>
+
+            <!-- Tri par insertion -->
+            <div class="subsection">
+                <span class="badge">4.2</span> Tri par insertion (Insertion Sort)
+            </div>
+
+            <p>On construit progressivement une liste triée. Chaque nouvel élément est inséré
+                à la bonne position.</p>
+
+            <div class="pseudo-code">
+                <span class="keyword">Pour</span> <span class="var">i</span> = 2 <span class="keyword">à</span> n<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="var">clé</span> = A[<span class="var">i</span>]<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="var">j</span> = <span class="var">i</span> - 1<br><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">Tant que</span> <span class="var">j</span> &gt; 0 <span
+                    class="keyword">et</span> A[<span class="var">j</span>] &gt; <span class="var">clé</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A[<span class="var">j</span>+1] = A[<span
+                    class="var">j</span>]<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="var">j</span> = <span class="var">j</span>
+                - 1<br><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;A[<span class="var">j</span>+1] = <span class="var">clé</span>
+            </div>
+
+            <p>Complexité :</p>
+            <ul>
+                <li>Meilleur cas (tableau trié) : <span class="math-inline">O(n)</span></li>
+                <li>Pire cas (ordre inverse) : <span class="math-inline">O(n²)</span></li>
+                <li>Stable et in-place</li>
+            </ul>
+
+            <!-- Tri par sélection -->
+            <div class="subsection">
+                <span class="badge">4.3</span> Tri par sélection (Selection Sort)
+            </div>
+
+            <p>À chaque étape, on cherche le plus petit élément et on l'échange avec la première
+                position non triée.</p>
+
+            <div class="pseudo-code">
+                <span class="keyword">Pour</span> <span class="var">i</span> = 1 <span class="keyword">à</span> n-1<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="var">min</span> = <span class="var">i</span><br><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">Pour</span> <span class="var">j</span> = <span
+                    class="var">i</span>+1 <span class="keyword">à</span> n<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">si</span> A[<span
+                    class="var">j</span>] &lt; A[<span class="var">min</span>]<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="var">min</span> =
+                <span class="var">j</span><br><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;échanger A[<span class="var">i</span>] et A[<span class="var">min</span>]
+            </div>
+
+            <p>Nombre de comparaisons :</p>
+            <div class="math">(n-1) + (n-2) + ... + 1 = n(n-1) / 2</div>
+            <p>Donc : <span class="math-inline">T(n) = O(n²)</span></p>
+            <p>Propriétés : in-place, généralement <strong>non stable</strong>.</p>
+
+            <!-- Tri à bulles -->
+            <div class="subsection">
+                <span class="badge">4.4</span> Tri à bulles (Bubble Sort)
+            </div>
+
+            <p>On compare les éléments adjacents et on les échange si nécessaire.
+                Les plus grands éléments remontent vers la fin du tableau.</p>
+
+            <div class="pseudo-code">
+                <span class="keyword">Pour</span> <span class="var">i</span> = 1 <span class="keyword">à</span> n-1<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">Pour</span> <span class="var">j</span> = 1 <span
+                    class="keyword">à</span> n-<span class="var">i</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">si</span> A[<span
+                    class="var">j</span>] &gt; A[<span class="var">j</span>+1]<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;échanger A[<span
+                    class="var">j</span>] et A[<span class="var">j</span>+1]
+            </div>
+
+            <p>Complexité :</p>
+            <ul>
+                <li>Pire cas : <span class="math-inline">O(n²)</span></li>
+                <li>Meilleur cas (tableau trié, avec optimisation) : <span class="math-inline">O(n)</span></li>
+                <li>Stable et in-place</li>
+            </ul>
+
+            <!-- Comparaison -->
+            <div class="subsection">
+                <span class="badge">4.5</span> Comparaison des algorithmes de tri
+            </div>
+
+            <table class="complexity-table">
+                <thead>
+                    <tr>
+                        <th>Algorithme</th>
+                        <th>Meilleur cas</th>
+                        <th>Pire cas</th>
+                        <th>Stable</th>
+                        <th>Mémoire</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Insertion Sort</td>
+                        <td><span class="math-inline">O(n)</span></td>
+                        <td><span class="math-inline">O(n²)</span></td>
+                        <td>Oui</td>
+                        <td>In-place</td>
+                    </tr>
+                    <tr>
+                        <td>Selection Sort</td>
+                        <td><span class="math-inline">O(n²)</span></td>
+                        <td><span class="math-inline">O(n²)</span></td>
+                        <td>Non</td>
+                        <td>In-place</td>
+                    </tr>
+                    <tr>
+                        <td>Bubble Sort</td>
+                        <td><span class="math-inline">O(n)</span></td>
+                        <td><span class="math-inline">O(n²)</span></td>
+                        <td>Oui</td>
+                        <td>In-place</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                Ces tris simples ont généralement une complexité <span class="math-inline">O(n²)</span>.
+                Pour de grandes données, on utilise des algorithmes plus efficaces comme
+                <strong>Merge Sort</strong>, <strong>Quick Sort</strong> ou <strong>Heap Sort</strong>
+                qui atteignent <span class="math-inline">O(n log n)</span>.
+            </p>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 5. APPLICATION PRATIQUE                      -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 05</span>
+            <h3>Application pratique (contexte réel)</h3>
+
+            <p>
+                Dans le développement logiciel, l'analyse asymptotique permet d'<strong>anticiper
+                    les performances</strong> d'un programme avant même son exécution.
+            </p>
+            <p>
+                Par exemple, dans une application manipulant une grande base de données, un algorithme
+                de recherche linéaire en <span class="math-inline">O(n)</span> peut devenir inefficace
+                lorsque le nombre d'éléments devient très élevé. L'utilisation de structures de données
+                optimisées comme les <strong>tables de hachage</strong> ou les <strong>arbres équilibrés</strong>
+                permet de réduire la complexité à <span class="math-inline">O(log n)</span> ou
+                <span class="math-inline">O(1)</span>.
+            </p>
+            <p>
+                Dans le contexte du développement <strong>blockchain</strong>, cette optimisation est
+                encore plus critique car chaque opération consomme des ressources calculatoires mesurées en gas.
+            </p>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 6. AUTO-ÉVALUATION                           -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 06</span>
+            <h3>Auto-évaluation et méta-cognition</h3>
+
+            <p><strong>Ce que je maîtrise bien :</strong></p>
+            <span class="tag-good">✓ Identification du terme dominant</span>
+            <span class="tag-good">✓ Calcul de complexité des boucles simples</span>
+            <span class="tag-good">✓ Comparaison des algorithmes de tri</span>
+
+            <p style="margin-top: 1rem;"><strong>Ce que je dois améliorer :</strong></p>
+            <span class="tag-improve">↗ Analyse de fonctions complexes</span>
+            <span class="tag-improve">↗ Preuves formelles des bornes asymptotiques</span>
+
+            <p style="margin-top: 1.2rem;"><strong>Stratégie pour progresser :</strong></p>
+            <ul>
+                <li>Résoudre régulièrement des exercices d'analyse de complexité</li>
+                <li>Comparer différentes implémentations d'algorithmes</li>
+                <li>Étudier l'impact des structures de données sur la complexité</li>
+            </ul>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><a href="../index.html">← Retour à l'accueil</a></p>
+        <p>&copy; 2026 : Portfolio Algorithmique et Complexité</p>
+    </footer>
+
+</body>
+
+</html>
