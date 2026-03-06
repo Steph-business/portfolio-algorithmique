@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Leçon 4 : Structures de données hiérarchiques : arbres binaires, ABR, parcours, tas.">
+    <title>Leçon 4 : Structures de données hiérarchiques | Portfolio Algorithmique</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <a href="../index.html" class="logo">Algo &amp; Complexité</a>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../index.html#lecons">Leçons</a></li>
+                <li><a href="../bilan.html">Bilan</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Lesson Content -->
+    <main class="lesson-page container">
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="../index.html">Accueil</a>
+            <span>/</span>
+            <span class="current">Leçon 4 : Structures de données hiérarchiques</span>
+        </div>
+
+        <!-- Header -->
+        <div class="lesson-header fade-in">
+            <h1>Leçon 4 : Structures de données hiérarchiques</h1>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 1. JOURNAL D'APPRENTISSAGE RÉFLEXIF          -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 01</span>
+            <h3>Journal d'apprentissage réflexif</h3>
+
+            <p>
+                Cette semaine, j'ai étudié les <strong>structures de données hiérarchiques</strong>,
+                notamment les arbres binaires, les arbres binaires de recherche et les tas.
+                J'ai compris que contrairement aux structures linéaires comme les listes chaînées
+                ou les piles, les arbres permettent d'organiser les données de manière
+                <strong>hiérarchique</strong>, ce qui améliore les performances de certaines
+                opérations comme la recherche.
+            </p>
+            <p>
+                J'ai découvert les notions de <strong>nœud, racine, feuille et sous-arbre</strong>
+                qui permettent de décrire la structure d'un arbre. Au début, j'avais des difficultés
+                à comprendre comment fonctionnent les <strong>parcours d'arbres</strong> (préfixé,
+                infixé et postfixé). Cependant, les exemples d'algorithmes m'ont permis de mieux
+                comprendre la logique de ces parcours.
+            </p>
+            <p>
+                Cette leçon m'a aussi permis de voir comment les arbres et les tas sont utilisés
+                dans des applications réelles comme les <strong>bases de données</strong> ou les
+                <strong>moteurs de recherche</strong>.
+            </p>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 2. SYNTHÈSE DES CONCEPTS CLÉS                -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 02</span>
+            <h3>Synthèse des concepts clés</h3>
+
+            <p>
+                Les structures de données hiérarchiques permettent d'organiser les données sous
+                forme d'arbre. Contrairement aux structures linéaires, elles représentent les
+                données selon une <strong>relation parent-enfant</strong>.
+            </p>
+
+            <!-- Arbre -->
+            <div class="subsection">
+                <span class="badge">2.1</span> Arbre
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Définition : Arbre</div>
+                <p>
+                    Un arbre est une structure de données <strong>non linéaire</strong> composée
+                    de nœuds reliés entre eux. Chaque nœud peut avoir plusieurs fils,
+                    mais un seul parent.
+                </p>
+            </div>
+
+            <p>Notions importantes :</p>
+            <ul>
+                <li><strong>Racine</strong> : premier nœud de l'arbre</li>
+                <li><strong>Nœud</strong> : élément contenant une information</li>
+                <li><strong>Feuille</strong> : nœud qui n'a pas d'enfant</li>
+                <li><strong>Sous-arbre</strong> : partie formée par un nœud et ses descendants</li>
+                <li><strong>Niveau</strong> : distance entre un nœud et la racine</li>
+                <li><strong>Hauteur</strong> : profondeur maximale de l'arbre</li>
+            </ul>
+
+            <!-- Arbre binaire -->
+            <div class="subsection">
+                <span class="badge">2.2</span> Arbre binaire
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Définition : Arbre binaire</div>
+                <p>
+                    Un arbre binaire est un arbre dans lequel chaque nœud possède
+                    <strong>au maximum deux enfants</strong> : un fils gauche et un fils droit.
+                </p>
+            </div>
+
+            <p>Les arbres binaires peuvent avoir plusieurs formes :</p>
+            <ul>
+                <li><strong>Arbre filiforme</strong> (dégénéré) : chaque nœud n'a qu'un seul fils</li>
+                <li><strong>Arbre binaire complet</strong> : tous les niveaux sont remplis sauf éventuellement le
+                    dernier</li>
+                <li><strong>Arbre binaire parfait</strong> : tous les niveaux sont entièrement remplis</li>
+                <li><strong>Arbre binaire équilibré</strong> : la différence de hauteur entre sous-arbres est ≤ 1</li>
+            </ul>
+
+            <!-- ABR -->
+            <div class="subsection">
+                <span class="badge">2.3</span> Arbre binaire de recherche (ABR)
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">Propriété : Arbre binaire de recherche</div>
+                <p>Dans un ABR, pour tout nœud :</p>
+                <ul>
+                    <li>Les valeurs du <strong>sous-arbre gauche</strong> sont <strong>inférieures</strong></li>
+                    <li>Les valeurs du <strong>sous-arbre droit</strong> sont <strong>supérieures ou égales</strong>
+                    </li>
+                </ul>
+            </div>
+
+            <p>Cela permet de réaliser efficacement :</p>
+            <ul>
+                <li><strong>Recherche</strong> d'un élément</li>
+                <li><strong>Insertion</strong> d'un élément</li>
+                <li><strong>Suppression</strong> d'un élément</li>
+            </ul>
+
+            <!-- Parcours -->
+            <div class="subsection">
+                <span class="badge">2.4</span> Parcours d'arbre
+            </div>
+
+            <p>Le parcours d'arbre consiste à visiter tous les nœuds. Les principaux parcours sont :</p>
+
+            <div class="definition-box">
+                <div class="box-title">Parcours préfixé (Pré-ordre)</div>
+                <p><strong>Racine</strong> → Sous-arbre gauche → Sous-arbre droit</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Parcours infixé (In-ordre)</div>
+                <p>Sous-arbre gauche → <strong>Racine</strong> → Sous-arbre droit</p>
+                <p><em>Pour un ABR, ce parcours donne les éléments triés en ordre croissant.</em></p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Parcours postfixé (Post-ordre)</div>
+                <p>Sous-arbre gauche → Sous-arbre droit → <strong>Racine</strong></p>
+            </div>
+
+            <p>Ces parcours sont généralement implémentés à l'aide de la <strong>récursivité</strong>.</p>
+
+            <!-- Tas -->
+            <div class="subsection">
+                <span class="badge">2.5</span> Tas (Heap)
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">Définition : Tas</div>
+                <p>
+                    Un tas est un <strong>arbre binaire complet</strong> qui respecte une
+                    propriété d'ordre :
+                </p>
+                <ul>
+                    <li><strong>Max-heap</strong> : chaque nœud est supérieur à ses enfants</li>
+                    <li><strong>Min-heap</strong> : chaque nœud est inférieur à ses enfants</li>
+                </ul>
+            </div>
+
+            <p>Les tas sont utilisés pour :</p>
+            <ul>
+                <li>Les <strong>files de priorité</strong></li>
+                <li>La planification des tâches</li>
+                <li>Certains algorithmes comme <strong>Dijkstra</strong></li>
+            </ul>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 3. APPLICATION PRATIQUE                      -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 03</span>
+            <h3>Application pratique dans mon contexte</h3>
+
+            <p>
+                Dans mon domaine d'étude en informatique et en développement logiciel,
+                les arbres binaires et les tas sont utilisés dans plusieurs situations :
+            </p>
+            <ul>
+                <li>
+                    Dans un <strong>système de gestion de données</strong> ou dans une base de données,
+                    les arbres de recherche permettent de retrouver rapidement une information
+                    dans un grand ensemble de données.
+                </li>
+                <li>
+                    Les <strong>tas</strong> peuvent être utilisés pour gérer des files de priorité,
+                    par exemple dans un système qui traite les requêtes les plus importantes en premier.
+                </li>
+                <li>
+                    Dans le développement d'<strong>applications ou d'algorithmes complexes</strong>,
+                    comprendre ces structures permet d'améliorer les performances des programmes
+                    et d'optimiser le temps de recherche ou de traitement.
+                </li>
+            </ul>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 4. AUTO-ÉVALUATION                           -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 04</span>
+            <h3>Auto-évaluation et méta-cognition</h3>
+
+            <p><strong>Ce que je maîtrise bien :</strong></p>
+            <span class="tag-good">✓ Notions fondamentales des arbres</span>
+            <span class="tag-good">✓ Structure d'un arbre binaire</span>
+            <span class="tag-good">✓ Principe des arbres binaires de recherche</span>
+
+            <p style="margin-top: 1rem;"><strong>Ce que je dois améliorer :</strong></p>
+            <span class="tag-improve">↗ Algorithmes de parcours d'arbre</span>
+            <span class="tag-improve">↗ Insertion et suppression dans un ABR</span>
+
+            <p style="margin-top: 1.2rem;"><strong>Stratégie pour progresser :</strong></p>
+            <ul>
+                <li>Pratiquer davantage d'exercices sur les arbres binaires</li>
+                <li>Implémenter ces structures dans un langage de programmation</li>
+                <li>Analyser leur complexité pour mieux comprendre leur efficacité</li>
+            </ul>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><a href="../index.html">← Retour à l'accueil</a></p>
+        <p>&copy; 2026 : Portfolio Algorithmique et Complexité</p>
+    </footer>
+
+</body>
+
+</html>
