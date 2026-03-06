@@ -36,32 +36,25 @@
 
         <!-- Header -->
         <div class="lesson-header fade-in">
-            <h1>Bilan Final</h1>
-            <p class="subtitle">Réflexion de fin de semestre sur l'ensemble du parcours en Algorithmique et Complexité.
-            </p>
+            <h1>Bilan : Leçon 1</h1>
+            <p class="subtitle">Bilan de la Leçon 1 : Preuve et Complexité Algorithmique.</p>
         </div>
 
         <!-- 1. Ce que j'ai le plus appris -->
         <div class="content-block fade-in">
             <span class="section-badge">Bilan 01</span>
-            <h3>Ce que j'ai le plus appris dans ce cours</h3>
+            <h3>Ce que j'ai le plus appris dans cette leçon</h3>
             <p>
-                Ce cours m'a appris que l'algorithmique est avant tout une <strong>discipline scientifique
-                    formelle</strong>,
-                et non simplement une question de "faire fonctionner un programme".
-                La distinction fondamentale entre <strong>correction partielle</strong> et <strong>terminaison</strong>
-                m'a fait comprendre qu'un algorithme qui produit un résultat n'est pas nécessairement correct.
+                Cette leçon m'a fait comprendre que <strong>tester un algorithme ne suffit pas
+                    à prouver qu'il est correct</strong>. La distinction entre <strong>terminaison</strong>
+                et <strong>correction partielle</strong> m'a montré qu'il faut raisonner
+                mathématiquement pour garantir le bon fonctionnement d'un algorithme.
             </p>
             <p>
-                J'ai également appris à raisonner en termes de <strong>complexité asymptotique</strong> :
-                évaluer l'efficacité d'un algorithme non pas en mesurant son temps d'exécution,
-                mais en analysant mathématiquement sa croissance avec la notation Big-O.
-                La maîtrise des <strong>invariants de boucle</strong> et des <strong>variants</strong>
-                m'a donné des outils rigoureux pour prouver qu'un algorithme fait bien ce qu'on attend de lui.
-            </p>
-            <p>
-                Enfin, la découverte des <strong>classes de complexité P et NP</strong> m'a ouvert
-                une perspective théorique sur les limites fondamentales de ce que l'on peut calculer efficacement.
+                J'ai appris à utiliser les <strong>invariants de boucle</strong> pour prouver
+                formellement la correction d'un algorithme itératif, et les <strong>variants</strong>
+                pour garantir sa terminaison. J'ai aussi approfondi la <strong>notation Big-O</strong>
+                avec sa définition formelle et l'analyse d'algorithmes comme PrefMoyen.
             </p>
         </div>
 
@@ -70,29 +63,24 @@
             <span class="section-badge">Bilan 02</span>
             <h3>Les compétences que je peux réutiliser ailleurs</h3>
             <p>
-                Les compétences acquises dans ce cours sont directement transférables à de nombreux domaines :
+                Les compétences acquises dans cette leçon sont directement réutilisables :
             </p>
             <ul>
                 <li>
-                    <strong>Analyse de performance</strong> : Savoir évaluer la complexité d'un algorithme
-                    me permet de faire des choix éclairés dans tous mes projets de développement,
-                    qu'il s'agisse d'une application web, mobile ou d'un système embarqué.
+                    <strong>Prouver la correction d'un algorithme</strong> : construire un invariant
+                    de boucle et vérifier initialisation, conservation et conclusion.
                 </li>
                 <li>
-                    <strong>Raisonnement formel</strong> : La capacité à construire des preuves
-                    (invariants, récurrence) renforce ma rigueur logique, utile aussi bien en mathématiques
-                    qu'en rédaction de spécifications techniques.
+                    <strong>Analyser la complexité</strong> : évaluer le nombre d'opérations
+                    d'un algorithme avec la notation Big-O pour choisir la solution la plus efficace.
                 </li>
                 <li>
-                    <strong>Optimisation</strong> : Identifier qu'un algorithme O(n²) peut être
-                    remplacé par un O(n log n) est une compétence critique dans le développement
-                    de systèmes performants, y compris dans le domaine de la blockchain
-                    où chaque opération a un coût économique réel.
+                    <strong>Optimiser le code</strong> : remplacer un algorithme O(n²)
+                    par un O(n log n) dans mes projets de développement.
                 </li>
                 <li>
-                    <strong>Pensée critique</strong> : Distinguer ce qui est "calculable efficacement"
-                    de ce qui ne l'est pas (P vs NP) développe un esprit d'analyse applicable
-                    à la résolution de problèmes complexes dans tout contexte professionnel.
+                    <strong>Raisonner sur les limites du calcul</strong> : comprendre pourquoi
+                    certains problèmes (NP-complets) n'ont pas de solution efficace connue.
                 </li>
             </ul>
         </div>
@@ -102,22 +90,15 @@
             <span class="section-badge">Bilan 03</span>
             <h3>Mon plus grand défi</h3>
             <p>
-                Mon plus grand défi a été la <strong>construction systématique d'invariants de boucle</strong>
-                pour des algorithmes non triviaux. Si l'invariant d'un algorithme de somme simple
-                est relativement intuitif, identifier l'invariant correct pour des algorithmes
-                plus complexes (tri, recherche, algorithmes sur les graphes) demande un niveau
-                d'abstraction que je dois encore développer.
+                Mon plus grand défi dans cette leçon a été la <strong>construction d'invariants
+                    de boucle</strong>. Pour un algorithme de somme, l'invariant est intuitif,
+                mais pour des algorithmes plus complexes, trouver le bon invariant demande
+                un niveau d'abstraction que je dois encore développer.
             </p>
             <p>
-                La <strong>résolution des équations de récurrence</strong> constitue également
-                un défi important. Passer de la relation T(n) = 2·T(n/2) + O(n) à la conclusion
-                T(n) = O(n log n) via le théorème maître nécessite une pratique régulière
-                que je n'ai pas encore suffisamment consolidée.
-            </p>
-            <p>
-                Enfin, le passage du <strong>raisonnement intuitif au raisonnement formel</strong>
-                reste un exercice exigeant : je comprends souvent pourquoi un algorithme fonctionne,
-                mais formaliser cette compréhension en une preuve rigoureuse demande encore un effort conscient.
+                Le passage du <strong>raisonnement intuitif au raisonnement formel</strong>
+                reste exigeant : je comprends souvent pourquoi un algorithme fonctionne,
+                mais formaliser cette compréhension en une preuve rigoureuse demande un effort conscient.
             </p>
         </div>
 
@@ -126,32 +107,20 @@
             <span class="section-badge">Bilan 04</span>
             <h3>Mes prochaines étapes d'apprentissage</h3>
             <p>
-                Pour poursuivre ma progression, je me fixe les objectifs concrets suivants :
+                Suite à cette leçon, je me fixe les objectifs suivants :
             </p>
             <ul>
                 <li>
-                    <strong>Maîtriser le théorème maître</strong> : Résoudre au moins 10 équations
-                    de récurrence de type diviser-pour-régner pour automatiser l'analyse
-                    des algorithmes récursifs.
+                    <strong>Pratiquer les preuves formelles</strong> : résoudre au moins 10 exercices
+                    de construction d'invariants sur des algorithmes variés (tri, recherche, parcours).
                 </li>
                 <li>
-                    <strong>Approfondir les structures de données avancées</strong> : Étudier
-                    les arbres AVL, les tas binaires et les tables de hachage pour comprendre
-                    comment les choix de structures impactent la complexité globale.
+                    <strong>Maîtriser les récurrences</strong> : apprendre à résoudre les équations
+                    de récurrence avec le théorème maître pour analyser les algorithmes récursifs.
                 </li>
                 <li>
-                    <strong>Pratiquer la programmation dynamique</strong> : Résoudre des problèmes
-                    classiques (sac à dos, plus longue sous-séquence commune) pour développer
-                    l'intuition nécessaire à l'identification de sous-problèmes optimaux.
-                </li>
-                <li>
-                    <strong>Explorer les algorithmes de graphes</strong> : Dijkstra, Bellman-Ford,
-                    et les algorithmes de flot maximal, qui ont des applications directes
-                    dans les réseaux, la logistique et l'optimisation.
-                </li>
-                <li>
-                    <strong>Contribuer à un projet open-source</strong> : Appliquer mes connaissances
-                    théoriques à un contexte réel en optimisant les performances d'un projet existant.
+                    <strong>Implémenter et analyser</strong> : coder 3 algorithmes récursifs,
+                    puis analyser formellement leur complexité et prouver leur correction.
                 </li>
             </ul>
         </div>
