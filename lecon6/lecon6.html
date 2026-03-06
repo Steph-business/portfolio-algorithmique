@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Leçon 6 : Graphes : définitions, représentations, parcours BFS/DFS, Dijkstra, Prim.">
+    <title>Leçon 6 : Graphes | Portfolio Algorithmique</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <a href="../index.html" class="logo">Algo &amp; Complexité</a>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../index.html#lecons">Leçons</a></li>
+                <li><a href="../index.html#bilans">Bilans</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="lesson-page container">
+
+        <div class="breadcrumb">
+            <a href="../index.html">Accueil</a>
+            <span>/</span>
+            <span class="current">Leçon 6 : Graphes</span>
+        </div>
+
+        <div class="lesson-header fade-in">
+            <h1>Leçon 6 : Graphes</h1>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 1. JOURNAL D'APPRENTISSAGE RÉFLEXIF          -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 01</span>
+            <h3>Journal d'apprentissage réflexif</h3>
+
+            <p>
+                Cette semaine, j'ai étudié les <strong>graphes</strong>, une structure de données
+                non linéaire utilisée pour représenter des relations entre objets. J'ai compris que
+                contrairement aux arbres, les graphes permettent des relations plus complexes :
+                cycles, connexions multiples, pondérations.
+            </p>
+            <p>
+                J'ai découvert les notions de <strong>sommet, arête, arc, chemin, circuit</strong>
+                et les différentes formes de graphes (orienté, non orienté, pondéré). Au début,
+                j'avais des difficultés à distinguer les parcours <strong>BFS</strong> et
+                <strong>DFS</strong>. Les exemples d'algorithmes comme <strong>Dijkstra</strong>
+                et <strong>Prim</strong> m'ont montré l'utilité concrète des graphes dans les
+                réseaux, GPS et bases de données.
+            </p>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 2. SYNTHÈSE DES CONCEPTS CLÉS                -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 02</span>
+            <h3>Synthèse des concepts clés</h3>
+
+            <!-- 2.1 Définitions -->
+            <div class="subsection">
+                <span class="badge">2.1</span> Définitions
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Définition : Graphe</div>
+                <p>
+                    Un graphe est défini par <strong>G = (N, L)</strong> où N est l'ensemble
+                    des sommets et L l'ensemble des arcs ou arêtes.
+                </p>
+            </div>
+
+            <p>Types de graphes :</p>
+            <ul>
+                <li><strong>Graphe orienté</strong> : les relations ont une direction (arc A → B)</li>
+                <li><strong>Graphe non orienté</strong> : les relations vont dans les deux sens (arête A — B)</li>
+                <li><strong>Graphe pondéré</strong> : chaque arête possède un poids (distance, coût, temps)</li>
+            </ul>
+
+            <!-- 2.2 Concepts fondamentaux -->
+            <div class="subsection">
+                <span class="badge">2.2</span> Concepts fondamentaux
+            </div>
+
+            <ul>
+                <li><strong>Origine et extrémité</strong> : pour un arc (x, y), x = origine, y = extrémité</li>
+                <li><strong>Boucle</strong> : arc (x, x) reliant un sommet à lui-même</li>
+                <li><strong>Chemin</strong> : suite d'arcs reliant des sommets</li>
+                <li><strong>Circuit</strong> : chemin qui revient au sommet de départ</li>
+                <li><strong>Chaîne</strong> : chemin dans un graphe non orienté</li>
+                <li><strong>Cycle</strong> : chaîne fermée</li>
+            </ul>
+
+            <div class="definition-box">
+                <div class="box-title">Graphe connexe</div>
+                <p>Tous les sommets peuvent être reliés par un chemin.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Graphe fortement connexe</div>
+                <p>Dans un graphe orienté, chaque sommet peut atteindre <strong>tous les autres</strong>.</p>
+            </div>
+
+            <!-- 2.3 Représentation -->
+            <div class="subsection">
+                <span class="badge">2.3</span> Représentation des graphes
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">Liste d'adjacence</div>
+                <p>Chaque sommet contient la <strong>liste de ses voisins</strong> (tableau de listes chaînées).</p>
+                <div class="pseudo-code">
+                    1 → 2 → 4<br>
+                    2 → 5 → 6<br>
+                    3 → 6
+                </div>
+                <p>Avantage : économise la mémoire, efficace pour graphes peu denses.</p>
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">Matrice d'adjacence</div>
+                <p>Tableau à deux dimensions. <strong>1</strong> = arête existe, <strong>0</strong> = pas d'arête.</p>
+                <div class="pseudo-code">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 &nbsp;2 &nbsp;3 &nbsp;4<br>
+                    1 &nbsp;&nbsp;&nbsp;0 &nbsp;1 &nbsp;0 &nbsp;1<br>
+                    2 &nbsp;&nbsp;&nbsp;0 &nbsp;0 &nbsp;0 &nbsp;1<br>
+                    3 &nbsp;&nbsp;&nbsp;0 &nbsp;0 &nbsp;0 &nbsp;1<br>
+                    4 &nbsp;&nbsp;&nbsp;0 &nbsp;0 &nbsp;0 &nbsp;0
+                </div>
+                <p>Avantage : vérification rapide d'arête. Inconvénient : consomme beaucoup de mémoire.</p>
+            </div>
+
+            <!-- 2.4 Parcours -->
+            <div class="subsection">
+                <span class="badge">2.4</span> Parcours de graphe
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">BFS : Parcours en largeur (Breadth First Search)</div>
+                <p>Visiter les <strong>voisins d'abord</strong>, en utilisant une <strong>file FIFO</strong>.</p>
+                <div class="math">Complexité : O(|N| + |L|)</div>
+                <p>Applications : GPS, réseaux, diffusion de messages, chemin minimum (non pondéré).</p>
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">DFS : Parcours en profondeur (Depth First Search)</div>
+                <p>Aller <strong>le plus loin possible</strong>, en utilisant une <strong>pile LIFO</strong>.</p>
+                <div class="math">Complexité : O(|N| + |L|)</div>
+                <p>Applications : détection de cycles, tri topologique, composantes fortement connexes.</p>
+            </div>
+
+            <!-- 2.5 Plus court chemin -->
+            <div class="subsection">
+                <span class="badge">2.5</span> Plus court chemin
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">Algorithme de Dijkstra</div>
+                <p>Trouve le <strong>plus court chemin</strong> depuis un sommet source dans un graphe pondéré.</p>
+                <p>Condition : <strong>poids positifs</strong>.</p>
+                <p>Principe :</p>
+                <ul>
+                    <li>Choisir le sommet avec la plus petite distance</li>
+                    <li>Mettre à jour les distances des voisins</li>
+                    <li>Répéter jusqu'à tout visiter</li>
+                </ul>
+            </div>
+
+            <!-- 2.6 Arbre couvrant -->
+            <div class="subsection">
+                <span class="badge">2.6</span> Arbre couvrant minimal (MST)
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Arbre couvrant minimal</div>
+                <p>
+                    Un arbre couvrant contient <strong>tous les sommets</strong> sans cycle.
+                    L'arbre couvrant minimal a la <strong>somme des poids minimale</strong>.
+                </p>
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">Algorithme de Prim</div>
+                <p>Principe :</p>
+                <ul>
+                    <li>Commencer par un sommet</li>
+                    <li>Choisir l'arête la moins coûteuse</li>
+                    <li>Ajouter le sommet</li>
+                    <li>Répéter jusqu'à couvrir tout le graphe</li>
+                </ul>
+                <p>Autre algorithme similaire : <strong>Kruskal</strong>.</p>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 3. APPLICATION PRATIQUE                      -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 03</span>
+            <h3>Application pratique dans mon contexte</h3>
+
+            <p>Les graphes sont omniprésents dans le monde réel :</p>
+            <ul>
+                <li>
+                    Les <strong>réseaux sociaux</strong> modélisent les utilisateurs comme sommets
+                    et les relations d'amitié comme arêtes.
+                </li>
+                <li>
+                    Les <strong>GPS et systèmes de navigation</strong> utilisent Dijkstra pour
+                    trouver le chemin le plus court entre deux points.
+                </li>
+                <li>
+                    Les <strong>réseaux informatiques</strong> utilisent les arbres couvrants minimaux
+                    (Prim/Kruskal) pour optimiser le câblage.
+                </li>
+                <li>
+                    Les <strong>systèmes de recommandation</strong> exploitent les graphes pour
+                    suggérer du contenu basé sur les connexions entre utilisateurs.
+                </li>
+            </ul>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 4. AUTO-ÉVALUATION                           -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 04</span>
+            <h3>Auto-évaluation et méta-cognition</h3>
+
+            <p><strong>Ce que je maîtrise bien :</strong></p>
+            <span class="tag-good">✓ Définitions : sommets, arêtes, arcs, chemins</span>
+            <span class="tag-good">✓ Représentations : liste d'adjacence et matrice</span>
+            <span class="tag-good">✓ Principe de BFS et DFS</span>
+
+            <p style="margin-top: 1rem;"><strong>Ce que je dois améliorer :</strong></p>
+            <span class="tag-improve">↗ Implémentation de Dijkstra pas à pas</span>
+            <span class="tag-improve">↗ Algorithmes Prim et Kruskal</span>
+
+            <p style="margin-top: 1.2rem;"><strong>Stratégie pour progresser :</strong></p>
+            <ul>
+                <li>Implémenter BFS et DFS dans un langage de programmation</li>
+                <li>Résoudre des exercices de plus court chemin avec Dijkstra</li>
+                <li>Construire un arbre couvrant minimal avec Prim sur des exemples concrets</li>
+            </ul>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p><a href="../index.html">← Retour à l'accueil</a></p>
+        <p>&copy; 2026 : Portfolio Algorithmique et Complexité</p>
+    </footer>
+</body>
+
+</html>
