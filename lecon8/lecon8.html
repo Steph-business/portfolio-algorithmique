@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Leçon 8 : Algorithmes approchés : heuristiques, glouton, recherche locale, métaheuristiques.">
+    <title>Leçon 8 : Algorithmes approchés | Portfolio Algorithmique</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <a href="../index.html" class="logo">Algo &amp; Complexité</a>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../index.html#lecons">Leçons</a></li>
+                <li><a href="../index.html#bilans">Bilans</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="lesson-page container">
+
+        <div class="breadcrumb">
+            <a href="../index.html">Accueil</a>
+            <span>/</span>
+            <span class="current">Leçon 8 : Algorithmes approchés</span>
+        </div>
+
+        <div class="lesson-header fade-in">
+            <h1>Leçon 8 : Techniques de conception d'algorithmes approchés</h1>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 1. JOURNAL D'APPRENTISSAGE RÉFLEXIF          -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 01</span>
+            <h3>Journal d'apprentissage réflexif</h3>
+
+            <p>
+                Cette leçon m'a fait découvrir les <strong>algorithmes approchés</strong>, des méthodes
+                qui ne cherchent pas forcément la solution parfaite mais une solution
+                <strong>proche de l'optimum</strong> en un temps raisonnable. J'ai compris
+                la différence fondamentale avec les algorithmes exacts.
+            </p>
+            <p>
+                J'ai étudié les <strong>heuristiques</strong> (algorithme glouton, recherche locale)
+                et les <strong>métaheuristiques</strong> (recherche tabou, algorithme génétique).
+                L'algorithme glouton et son application au rendu de monnaie m'ont semblé intuitifs.
+                Mon défi reste de comprendre quand un glouton donne une solution optimale et quand
+                il faut recourir à des techniques plus avancées.
+            </p>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 2. SYNTHÈSE DES CONCEPTS CLÉS                -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 02</span>
+            <h3>Synthèse des concepts clés</h3>
+
+            <!-- 2.1 Introduction -->
+            <div class="subsection">
+                <span class="badge">2.1</span> Algorithmes exacts vs approchés
+            </div>
+
+            <table class="complexity-table">
+                <thead>
+                    <tr>
+                        <th>Critère</th>
+                        <th>Algorithmes exacts</th>
+                        <th>Algorithmes approchés</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Solution</td>
+                        <td>Toujours optimale</td>
+                        <td>Proche de l'optimum</td>
+                    </tr>
+                    <tr>
+                        <td>Temps de calcul</td>
+                        <td>Souvent très élevé</td>
+                        <td>Raisonnable</td>
+                    </tr>
+                    <tr>
+                        <td>Méthodes</td>
+                        <td>Prog. dynamique, Branch &amp; Bound</td>
+                        <td>Heuristiques, métaheuristiques</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 2.2 Algorithme glouton -->
+            <div class="subsection">
+                <span class="badge">2.2</span> Algorithme glouton (Greedy)
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Principe : Algorithme glouton</div>
+                <p>
+                    Construit la solution <strong>étape par étape</strong>.
+                    À chaque étape, on choisit la <strong>meilleure option locale</strong>.
+                </p>
+                <p>Conditions du choix :</p>
+                <ul>
+                    <li><strong>Réalisable</strong> : respecte les contraintes</li>
+                    <li><strong>Optimal localement</strong> : meilleur choix à l'instant</li>
+                    <li><strong>Irrévocable</strong> : on ne revient pas en arrière</li>
+                </ul>
+            </div>
+
+            <p>Schéma général :</p>
+            <div class="pseudo-code">
+                <span class="var">S</span> ← solution vide<br>
+                <span class="var">C</span> ← ensemble des candidats<br><br>
+                <span class="keyword">Tant que</span> <span class="var">S</span> n'est pas solution <span
+                    class="keyword">et</span> <span class="var">C</span> ≠ vide<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="var">x</span> ← meilleur candidat<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;retirer <span class="var">x</span> de <span class="var">C</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">si</span> <span class="var">x</span> est réalisable<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ajouter <span class="var">x</span> à <span
+                    class="var">S</span><br>
+                <span class="keyword">Fin tant que</span><br><br>
+                <span class="keyword">si</span> <span class="var">S</span> est solution → retourner <span
+                    class="var">S</span><br>
+                <span class="keyword">sinon</span> → pas de solution
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">Exemple : Rendu de monnaie</div>
+                <p>Objectif : rendre une somme avec le <strong>minimum de pièces</strong>.</p>
+                <p>Monnaie : {1, 5, 10, 50, 100, 200, 500, 1000, 2000, 5000, 10000}</p>
+                <p>Stratégie : prendre la plus grande pièce possible, soustraire, répéter.</p>
+                <div class="proof-step">
+                    Exemple : 1578 FCFA → 1000 + 500 + 50 + 10 + 5 + 3×1 = <strong>8 pièces</strong>
+                </div>
+                <p>⚠️ Un algorithme glouton <strong>ne donne pas toujours</strong> la solution optimale.</p>
+            </div>
+
+            <!-- 2.3 Recherche locale -->
+            <div class="subsection">
+                <span class="badge">2.3</span> Recherche locale
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Principe : Recherche locale</div>
+                <p>
+                    Commence par une solution initiale, explore les <strong>solutions voisines</strong>
+                    et <strong>améliore progressivement</strong>.
+                </p>
+            </div>
+
+            <p><strong>4 composantes essentielles :</strong></p>
+            <ul>
+                <li><strong>Espace de recherche</strong> : ensemble des solutions possibles</li>
+                <li><strong>Fonction objectif</strong> : fonction à minimiser ou maximiser</li>
+                <li><strong>Voisinage</strong> : solutions proches d'une solution donnée</li>
+                <li><strong>Stratégie d'exploration</strong> : manière de parcourir les voisins</li>
+            </ul>
+
+            <div class="pseudo-code">
+                <span class="var">s</span> ← solution initiale<br><br>
+                <span class="keyword">répéter</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="var">s'</span> ← meilleur voisin<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">si</span> f(<span class="var">s'</span>) améliore f(<span
+                    class="var">s</span>)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="var">s</span> ← <span
+                    class="var">s'</span><br>
+                <span class="keyword">jusqu'à</span> critère d'arrêt<br><br>
+                retourner <span class="var">s</span>
+            </div>
+
+            <p><strong>Descente simple (Hill Climbing) :</strong> choisir un voisin meilleur et continuer.
+                Simple et rapide, mais peut rester bloqué dans un <strong>optimum local</strong>.</p>
+
+            <!-- 2.4 Métaheuristiques -->
+            <div class="subsection">
+                <span class="badge">2.4</span> Métaheuristiques
+            </div>
+
+            <p>Méthodes plus puissantes qui explorent l'espace de recherche plus efficacement.</p>
+
+            <div class="theorem-box">
+                <div class="box-title">Recherche Tabou</div>
+                <p>Recherche locale améliorée avec <strong>mémoire</strong>.</p>
+                <ul>
+                    <li><strong>Liste tabou</strong> : interdit de revisiter certaines solutions</li>
+                    <li><strong>Critère d'aspiration</strong> : exception à la liste tabou</li>
+                    <li><strong>Intensification</strong> : explorer en profondeur une zone prometteuse</li>
+                </ul>
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">Algorithme génétique</div>
+                <p>Inspiré de l'<strong>évolution biologique</strong>.</p>
+                <ul>
+                    <li>Créer une <strong>population</strong> de solutions</li>
+                    <li><strong>Sélectionner</strong> les meilleures</li>
+                    <li>Appliquer <strong>croisement</strong> et <strong>mutation</strong></li>
+                    <li>Répéter jusqu'à convergence</li>
+                </ul>
+                <p>Applications : voyageur de commerce (TSP), optimisation complexe.</p>
+            </div>
+
+            <!-- Comparaison -->
+            <div class="subsection">
+                <span class="badge">2.5</span> Comparaison des méthodes
+            </div>
+
+            <table class="complexity-table">
+                <thead>
+                    <tr>
+                        <th>Méthode</th>
+                        <th>Avantage</th>
+                        <th>Limite</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Glouton</td>
+                        <td>Simple et rapide</td>
+                        <td>Pas toujours optimal</td>
+                    </tr>
+                    <tr>
+                        <td>Recherche locale</td>
+                        <td>Améliore une solution</td>
+                        <td>Optimum local</td>
+                    </tr>
+                    <tr>
+                        <td>Recherche tabou</td>
+                        <td>Évite les blocages</td>
+                        <td>Plus complexe</td>
+                    </tr>
+                    <tr>
+                        <td>Algo. génétique</td>
+                        <td>Exploration globale</td>
+                        <td>Coût de calcul</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 3. APPLICATION PRATIQUE                      -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 03</span>
+            <h3>Application pratique dans mon contexte</h3>
+
+            <p>Les algorithmes approchés sont utilisés dans de nombreux domaines :</p>
+            <ul>
+                <li>
+                    <strong>Logistique et transport</strong> : optimisation des tournées de livraison
+                    (problème du voyageur de commerce) avec des algorithmes génétiques.
+                </li>
+                <li>
+                    <strong>Réseaux</strong> : routage efficace des paquets avec des heuristiques gloutonnes.
+                </li>
+                <li>
+                    <strong>Intelligence artificielle</strong> : recherche tabou pour l'optimisation
+                    de paramètres de modèles de machine learning.
+                </li>
+                <li>
+                    <strong>Finance</strong> : optimisation de portefeuilles d'investissement
+                    avec des métaheuristiques.
+                </li>
+            </ul>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 4. AUTO-ÉVALUATION                           -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 04</span>
+            <h3>Auto-évaluation et méta-cognition</h3>
+
+            <p><strong>Ce que je maîtrise bien :</strong></p>
+            <span class="tag-good">✓ Principe de l'algorithme glouton</span>
+            <span class="tag-good">✓ Rendu de monnaie avec stratégie gloutonne</span>
+            <span class="tag-good">✓ Principe de la recherche locale</span>
+
+            <p style="margin-top: 1rem;"><strong>Ce que je dois améliorer :</strong></p>
+            <span class="tag-improve">↗ Recherche tabou et gestion de la mémoire</span>
+            <span class="tag-improve">↗ Algorithme génétique (croisement, mutation)</span>
+
+            <p style="margin-top: 1.2rem;"><strong>Stratégie pour progresser :</strong></p>
+            <ul>
+                <li>Implémenter un algorithme glouton pour le problème du sac à dos</li>
+                <li>Coder une recherche locale avec descente simple</li>
+                <li>Étudier un exemple concret d'algorithme génétique sur le TSP</li>
+            </ul>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p><a href="../index.html">← Retour à l'accueil</a></p>
+        <p>&copy; 2026 : Portfolio Algorithmique et Complexité</p>
+    </footer>
+</body>
+
+</html>
