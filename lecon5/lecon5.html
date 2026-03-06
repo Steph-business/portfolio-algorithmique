@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Leçon 5 : Tables de hachage : fonctions de hachage, collisions, chaînage, adressage ouvert.">
+    <title>Leçon 5 : Tables de hachage | Portfolio Algorithmique</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <a href="../index.html" class="logo">Algo &amp; Complexité</a>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../index.html#lecons">Leçons</a></li>
+                <li><a href="../index.html#bilans">Bilans</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="lesson-page container">
+
+        <div class="breadcrumb">
+            <a href="../index.html">Accueil</a>
+            <span>/</span>
+            <span class="current">Leçon 5 : Tables de hachage</span>
+        </div>
+
+        <div class="lesson-header fade-in">
+            <h1>Leçon 5 : Tables de hachage</h1>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 1. JOURNAL D'APPRENTISSAGE RÉFLEXIF          -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 01</span>
+            <h3>Journal d'apprentissage réflexif</h3>
+
+            <p>
+                Cette leçon m'a permis de découvrir les <strong>tables de hachage</strong>, une structure
+                de données qui permet de stocker et retrouver des informations très rapidement grâce
+                à une clé. J'ai compris que contrairement aux tableaux ou aux listes où la recherche
+                prend <span class="math-inline">O(n)</span>, les tables de hachage atteignent
+                <span class="math-inline">O(1)</span> en moyenne.
+            </p>
+            <p>
+                Le concept de <strong>fonction de hachage</strong> m'a intéressé : transformer une clé
+                en indice de tableau est une idée élégante. Mon principal défi reste la compréhension
+                des différentes <strong>méthodes de résolution de collisions</strong>, notamment
+                la différence entre sondage linéaire, quadratique et double hachage.
+            </p>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 2. SYNTHÈSE DES CONCEPTS CLÉS                -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 02</span>
+            <h3>Synthèse des concepts clés</h3>
+
+            <!-- 2.1 Introduction -->
+            <div class="subsection">
+                <span class="badge">2.1</span> Principe des tables de hachage
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Définition : Table de hachage</div>
+                <p>
+                    Une table de hachage est un tableau qui stocke des <strong>paires clé-valeur</strong>.
+                    On applique une fonction de hachage à la clé pour obtenir un indice dans le tableau.
+                </p>
+            </div>
+
+            <p>Comparaison avec d'autres structures :</p>
+
+            <table class="complexity-table">
+                <thead>
+                    <tr>
+                        <th>Structure</th>
+                        <th>Temps moyen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tableau / Liste</td>
+                        <td><span class="math-inline">O(n)</span></td>
+                    </tr>
+                    <tr>
+                        <td>Arbre binaire équilibré</td>
+                        <td><span class="math-inline">O(log n)</span></td>
+                    </tr>
+                    <tr>
+                        <td>Table de hachage</td>
+                        <td><span class="math-inline">O(1)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 2.2 Fonction de hachage -->
+            <div class="subsection">
+                <span class="badge">2.2</span> Fonction de hachage
+            </div>
+
+            <p>Une fonction de hachage transforme une clé en indice. Elle doit être :</p>
+            <ul>
+                <li><strong>Rapide</strong> à calculer</li>
+                <li><strong>Déterministe</strong> : même clé → même résultat</li>
+                <li><strong>Uniforme</strong> : répartir les clés uniformément</li>
+            </ul>
+
+            <div class="theorem-box">
+                <div class="box-title">Méthode de division</div>
+                <div class="math">h(k) = k mod m</div>
+                <div class="proof-step">
+                    Exemple : k = 100, m = 13 → h(100) = 100 mod 13 = 9
+                </div>
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">Méthode multiplicative</div>
+                <div class="math">h(k) = ⌊ m (kA mod 1) ⌋</div>
+                <p>avec 0 &lt; A &lt; 1, souvent A ≈ (√5 − 1) / 2</p>
+                <p>Avantage : m n'a pas besoin d'être premier.</p>
+            </div>
+
+            <!-- 2.3 Collisions -->
+            <div class="subsection">
+                <span class="badge">2.3</span> Collisions
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Définition : Collision</div>
+                <p>
+                    Une collision se produit lorsque <strong>deux clés donnent le même indice</strong>.
+                    Il faut alors résoudre la collision.
+                </p>
+            </div>
+
+            <!-- 2.4 Résolution des collisions -->
+            <div class="subsection">
+                <span class="badge">2.4</span> Résolution des collisions
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Chaînage séparé</div>
+                <p>
+                    Chaque case du tableau contient une <strong>liste chaînée</strong>.
+                    Si collision, on ajoute dans la liste.
+                </p>
+                <p>Avantage : simple. Inconvénient : consomme plus de mémoire.</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Adressage ouvert : Sondage linéaire</div>
+                <p>On teste les cases suivantes : i, i+1, i+2, i+3...</p>
+                <p>Problème : <strong>clustering primaire</strong> (regroupement d'éléments).</p>
+            </div>
+
+            <div class="definition-box">
+                <div class="box-title">Adressage ouvert : Sondage quadratique</div>
+                <p>On teste : i, i+1², i+2², i+3² → i, i+1, i+4, i+9, i+16...</p>
+                <p>Réduit le clustering mais ne l'élimine pas.</p>
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">Adressage ouvert : Double hachage</div>
+                <p>On utilise <strong>2 fonctions de hachage</strong> h(k) et h'(k).</p>
+                <p>Positions testées : h(k), h(k)+h'(k), h(k)+2h'(k), h(k)+3h'(k)...</p>
+                <p>Avantage : <strong>réduit fortement les collisions</strong>.</p>
+            </div>
+
+            <!-- 2.5 Performance -->
+            <div class="subsection">
+                <span class="badge">2.5</span> Performance et facteur de charge
+            </div>
+
+            <div class="theorem-box">
+                <div class="box-title">Facteur de charge</div>
+                <div class="math">α = n / taille_table</div>
+                <div class="proof-step">
+                    Exemple : n = 75, table = 100 → α = 0.75
+                </div>
+                <p>La valeur idéale est environ <span class="math-inline">α ≈ 0.75</span>.</p>
+            </div>
+
+            <p>
+                Quand la table est trop pleine, on effectue un <strong>redimensionnement</strong> :
+                on crée une nouvelle table plus grande et on rehache tous les éléments.
+            </p>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 3. APPLICATION PRATIQUE                      -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 03</span>
+            <h3>Application pratique dans mon contexte</h3>
+
+            <p>
+                Les tables de hachage sont omniprésentes en développement logiciel :
+            </p>
+            <ul>
+                <li>
+                    Les <strong>dictionnaires</strong> en Python et les <strong>objets</strong>
+                    en JavaScript sont implémentés avec des tables de hachage.
+                </li>
+                <li>
+                    Les <strong>bases de données</strong> utilisent des index de hachage
+                    pour accélérer les requêtes de recherche.
+                </li>
+                <li>
+                    Les <strong>caches</strong> (mémoire cache, cache web) reposent sur
+                    des tables de hachage pour un accès rapide aux données fréquemment utilisées.
+                </li>
+                <li>
+                    La <strong>blockchain</strong> utilise des fonctions de hachage
+                    cryptographiques pour garantir l'intégrité des transactions.
+                </li>
+            </ul>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- 4. AUTO-ÉVALUATION                           -->
+        <!-- ============================================ -->
+        <div class="content-block fade-in">
+            <span class="section-badge">Section 04</span>
+            <h3>Auto-évaluation et méta-cognition</h3>
+
+            <p><strong>Ce que je maîtrise bien :</strong></p>
+            <span class="tag-good">✓ Principe des paires clé-valeur</span>
+            <span class="tag-good">✓ Méthode de division h(k) = k mod m</span>
+            <span class="tag-good">✓ Notion de collision et chaînage séparé</span>
+
+            <p style="margin-top: 1rem;"><strong>Ce que je dois améliorer :</strong></p>
+            <span class="tag-improve">↗ Sondage quadratique et double hachage</span>
+            <span class="tag-improve">↗ Choix du facteur de charge optimal</span>
+
+            <p style="margin-top: 1.2rem;"><strong>Stratégie pour progresser :</strong></p>
+            <ul>
+                <li>Implémenter une table de hachage complète avec chaînage séparé</li>
+                <li>Comparer les performances des différentes méthodes de résolution de collisions</li>
+                <li>Étudier les fonctions de hachage utilisées en cryptographie</li>
+            </ul>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p><a href="../index.html">← Retour à l'accueil</a></p>
+        <p>&copy; 2026 : Portfolio Algorithmique et Complexité</p>
+    </footer>
+</body>
+
+</html>
